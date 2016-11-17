@@ -26,8 +26,7 @@ public class Interface : MonoBehaviour {
 	}
     public void OpenRandomStar()
     {
-        MenuManager.Instance.OpenLvl(Random.Range(1, 4));
-        Debug.Log("OpenRandom");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("game");
     }
     public void Clear()
     {
