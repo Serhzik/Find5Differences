@@ -26,7 +26,11 @@ public class Interface : MonoBehaviour {
 	}
     public void OpenRandomStar()
     {
-        MenuManager.Instance.OpenLvl(Random.Range(1, 3));
+        MenuManager.Instance.OpenLvl(Random.Range(1, 4));
         Debug.Log("OpenRandom");
+    }
+    public void Clear()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }

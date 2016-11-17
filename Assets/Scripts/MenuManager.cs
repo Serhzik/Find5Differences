@@ -26,8 +26,8 @@ public class MenuManager : MonoBehaviour {
 	
 	public void OpenLvl(int stars)
     {
-        Stars[LvlOpened] = stars;
-        PlayerPrefs.SetInt("Stars" + LvlOpened, stars);
+        Stars[LvlOpened-1] = stars;
+        PlayerPrefs.SetInt("Stars" + (LvlOpened-1), stars);
 
         if (LvlOpened <= MaxLevels)
         {
