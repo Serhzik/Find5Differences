@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MenuManager : MonoBehaviour {
     public static MenuManager Instance;
+    public int twoStarSecs, threeStarSecs, loadedlevel;
 
     public int LvlOpened, MaxLevels;
     public bool Completed;
@@ -14,6 +15,7 @@ public class MenuManager : MonoBehaviour {
             Instance = this;
         else
             Destroy(this);
+        DontDestroyOnLoad(this);
     }
 
 	void Start () {
@@ -26,18 +28,20 @@ public class MenuManager : MonoBehaviour {
 	
 	public void OpenLvl(int stars)
     {
-        Stars[LvlOpened-1] = stars;
-        PlayerPrefs.SetInt("Stars" + (LvlOpened-1), stars);
-
-        if (LvlOpened <= MaxLevels)
+        Stars[loadedlevel-1] = stars;
+        PlayerPrefs.SetInt("Stars" + (loadedlevel-1), stars);
+        if(loadedlevel == LvlOpened)
         {
-            LvlOpened++;
-            PlayerPrefs.SetInt("Opened", LvlOpened);
+            if (LvlOpened <= MaxLevels)
+            {
+                LvlOpened++;
+                PlayerPrefs.SetInt("Opened", LvlOpened);
+            }
+            else
+            {
+                Completed = true;
+            }
+            Debug.Log("Open lvl = " + LvlOpened + "Stars = " + stars);
         }
-        else
-        {
-            Completed = true;
-        }
-        Debug.Log("Open lvl = " + LvlOpened + "Stars = " + stars);
     }
 }

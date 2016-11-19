@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Interface : MonoBehaviour {
 
     public GameObject[] Opened;
@@ -31,5 +32,10 @@ public class Interface : MonoBehaviour {
     public void Clear()
     {
         PlayerPrefs.DeleteAll();
+    }
+    public void loadLevel(int i)
+    {
+        MenuManager.Instance.loadedlevel = i;
+        SceneManager.LoadScene("Game");
     }
 }

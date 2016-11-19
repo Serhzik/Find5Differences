@@ -4,8 +4,20 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
     public int FindedDifs;
     public float time;
-	// Use this for initialization
-	void Start () {
+    public static GameManager Instance;
+    public bool[] Dif;
+    public bool winner;
+
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+    }
+
+    // Use this for initialization
+    void Start () {
 	    
 	}
 	
@@ -14,17 +26,20 @@ public class GameManager : MonoBehaviour {
         time += Time.deltaTime;
 
 	}
-    public void Find()
+    public void Find(int dif)
     {
         FindedDifs++;
+        Dif[dif] = true;
         if (FindedDifs == 5) // Win
         {
+            winner = true;
             int stars = 1;
-            if (time < 180)
+            if (time < MenuManager.Instance.twoStarSecs)
                 stars++;
-            if (time < 60)
+            if (time < MenuManager.Instance.threeStarSecs)
                 stars++;
             MenuManager.Instance.OpenLvl(stars);
+
         }
     }
 }
