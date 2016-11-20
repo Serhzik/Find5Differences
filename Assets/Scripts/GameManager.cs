@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
         if (Instance == null)
             Instance = this;
         else
-            Destroy(this);
+            Destroy(gameObject);
     }
 
     // Use this for initialization
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour {
             if (time < MenuManager.Instance.threeStarSecs)
                 stars++;
             MenuManager.Instance.OpenLvl(stars);
-
+            
         }
     }
 }

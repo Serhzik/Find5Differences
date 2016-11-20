@@ -15,7 +15,7 @@ public class MenuManager : MonoBehaviour {
             Instance = this;
         else
             Destroy(this);
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
     }
 
 	void Start () {
@@ -28,9 +28,9 @@ public class MenuManager : MonoBehaviour {
 	
 	public void OpenLvl(int stars)
     {
-        Stars[loadedlevel-1] = stars;
-        PlayerPrefs.SetInt("Stars" + (loadedlevel-1), stars);
-        if(loadedlevel == LvlOpened)
+        Stars[loadedlevel] = stars;
+        PlayerPrefs.SetInt("Stars" + (loadedlevel), stars);
+        if(loadedlevel == LvlOpened-1)
         {
             if (LvlOpened <= MaxLevels)
             {

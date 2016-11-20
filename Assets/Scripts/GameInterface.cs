@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameInterface : MonoBehaviour {
     public Text timer, timerShadow;
     public Slider slider;
-    public GameObject[] Icons, ButsLeft, ButsRight, TicsLeft, TicsRight;
+    public GameObject[] Icons, Levels;
     public GameObject Win, star2, star3;
     bool win;
     // Use this for initialization
-    void Start () {
-	
+    void Start() {
+        Levels[MenuManager.Instance.loadedlevel].SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -20,8 +20,6 @@ public class GameInterface : MonoBehaviour {
         {
             SetTimer();
             SetIcons();
-            SetButs();
-            SetTics();
             SetSlider();
             CheckWin();
         }
@@ -48,29 +46,29 @@ public class GameInterface : MonoBehaviour {
             //Debug.Log("i = " + i + "inon [i] = " + Icons[i].activeSelf);
         } 
     }
-    void SetButs()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            if(GameManager.Instance.Dif[i])
-            {
-                ButsLeft[i].SetActive(false);
-                ButsRight[i].SetActive(false);
-            }
-        }
-    }
+    //void SetButs()
+    //{
+    //    for (int i = 0; i < 5; i++)
+    //    {
+    //        if(GameManager.Instance.Dif[i])
+    //        {
+    //            ButsLeft[i].SetActive(false);
+    //            ButsRight[i].SetActive(false);
+    //        }
+    //    }
+    //}
 
-    void SetTics()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            if (GameManager.Instance.Dif[i])
-            {
-                TicsLeft[i].SetActive(true);
-                TicsRight[i].SetActive(true);
-            }
-        }
-    }
+    //void SetTics()
+    //{
+    //    for (int i = 0; i < 5; i++)
+    //    {
+    //        if (GameManager.Instance.Dif[i])
+    //        {
+    //            TicsLeft[i].SetActive(true);
+    //            TicsRight[i].SetActive(true);
+    //        }
+    //    }
+    //}
     void SetSlider()
     {
         //slider.value = ((float)MenuManager.Instance.twoStarSecs + 20) / GameManager.Instance.time;
@@ -93,7 +91,6 @@ public class GameInterface : MonoBehaviour {
     }
     public void NextButton()
     {
-        MenuManager.Instance.loadedlevel++;
         SceneManager.LoadScene("Game");
     }
 }
